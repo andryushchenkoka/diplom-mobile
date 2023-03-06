@@ -6,3 +6,4 @@ out
 *.class
 *.iml
 *.log
+local.properties
