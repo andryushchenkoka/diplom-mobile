@@ -2,7 +2,6 @@ package config;
 
 import org.aeonbits.owner.Config;
 
-@Config.LoadPolicy(Config.LoadType.MERGE)
 @org.aeonbits.owner.Config.Sources({
         "classpath:config/browserstack.properties"
 })
