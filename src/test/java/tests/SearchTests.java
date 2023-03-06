@@ -1,19 +1,20 @@
 package tests;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.util.List;
 
-import pages.MainPage;
+import pages.ExplorePage;
 import pages.SearchPage;
 
 import static io.qameta.allure.Allure.step;
 
 public class SearchTests extends BaseTest {
 
-    MainPage mainPage = new MainPage();
+    ExplorePage explorePage = new ExplorePage();
     SearchPage searchPage = new SearchPage();
 
     @ParameterizedTest
@@ -21,7 +22,7 @@ public class SearchTests extends BaseTest {
     public void checkSearchedArticleHeadersTest(String request, String language) {
 
         step("Тапнуть по поисковой строке", () -> {
-            mainPage.tapSearchLine();
+            explorePage.tapSearchLine();
         });
 
         step("Ввести запрос в поисковую строку", () -> {
@@ -37,5 +38,11 @@ public class SearchTests extends BaseTest {
             List<String> searchedHeaders = searchPage.getSearchResultsHeaders();
             Assertions.assertTrue(searchPage.isRequestInAllResults(request, searchedHeaders));
         });
+    }
+
+    @Test
+    public void checkSearchInBottomMenu(){
+
+
     }
 }
