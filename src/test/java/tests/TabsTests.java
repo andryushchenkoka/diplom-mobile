@@ -13,6 +13,7 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import pages.ArticlePage;
 import pages.ExplorePage;
 
 @Tag("UI")
@@ -21,6 +22,7 @@ import pages.ExplorePage;
 public class TabsTests extends BaseTest {
 
     ExplorePage explorePage = new ExplorePage();
+    ArticlePage articlePage = new ArticlePage();
 
     @Test
     @Feature("Меню навигации")
@@ -34,5 +36,22 @@ public class TabsTests extends BaseTest {
         });
     }
 
+    @Test
+    @Feature("Меню статьи")
+    @Story("Видимость элементов меню")
+    @DisplayName("Проверить видимость всех табов")
+    @Severity(SeverityLevel.CRITICAL)
+    public void checkActionTabsVisibility() {
 
+        step("Найти и открыть первую статью из списка", () -> {
+            explorePage.tapSearchTab()
+                    .setSearchRequest("")
+                    .setSearchLanguage("")
+                    .openFirstArticle();
+        });
+
+        step("Проверить видимость всех табов", () -> {
+            Assertions.assertTrue(articlePage.areAllTabsVisible());
+        });
+    }
 }

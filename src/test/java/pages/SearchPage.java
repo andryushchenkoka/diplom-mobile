@@ -4,6 +4,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static io.appium.java_client.AppiumBy.id;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import java.util.List;
@@ -30,6 +31,18 @@ public class SearchPage {
     public List<String> getSearchResultsHeaders() {
 
         return searchResultsPanel.$$x("android.view.ViewGroup/android.widget.TextView").texts();
+    }
+
+    public ElementsCollection getSearchResults() {
+
+        return $(id("org.wikipedia:id/fragment_search_results"))
+                .$$("android.view.ViewGroup");
+    }
+
+    public ArticlePage openFirstArticle() {
+
+        getSearchResults().get(0).click();
+        return new ArticlePage();
     }
 
     public boolean isRequestInAllResults(String request, List<String> results) {

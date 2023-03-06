@@ -1,19 +1,12 @@
 package pages.components;
 
 import static com.codeborne.selenide.Selenide.$;
-import static io.appium.java_client.AppiumBy.accessibilityId;
 import static io.appium.java_client.AppiumBy.id;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class ArticleActionTabComponent {
-
-    private final SelenideElement saveTab = $(accessibilityId("Save")),
-            langTab = $(accessibilityId("Language")),
-            findTab = $(accessibilityId("Find in article")),
-            themeTab = $(accessibilityId("Theme")),
-            contentsTab = $(accessibilityId("Contents"));
 
     public ElementsCollection getTabs() {
 
