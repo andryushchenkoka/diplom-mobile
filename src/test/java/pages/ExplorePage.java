@@ -5,7 +5,7 @@ import static io.appium.java_client.AppiumBy.accessibilityId;
 
 import com.codeborne.selenide.SelenideElement;
 
-public class MainPage {
+public class ExplorePage {
 
     private final SelenideElement searchLine = $(accessibilityId("org.wikipedia:id/search_container"));
 
