@@ -2,8 +2,7 @@ package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 
-import config.DeviceBsConfig;
-import config.UserBsConfig;
+import config.BrowserstackConfig;
 import lombok.SneakyThrows;
 
 import org.aeonbits.owner.ConfigFactory;
@@ -23,14 +22,13 @@ public class BrowserstackDriver implements WebDriverProvider {
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
 
-        UserBsConfig userBsConfig = ConfigFactory.create(UserBsConfig.class);
-        DeviceBsConfig bsConfig = ConfigFactory.create(DeviceBsConfig.class);
+        BrowserstackConfig bsConfig = ConfigFactory.create(BrowserstackConfig.class);
 
         MutableCapabilities mutableCapabilities = new MutableCapabilities();
         mutableCapabilities.merge(capabilities);
 
-        mutableCapabilities.setCapability("browserstack.user", userBsConfig.getBsUser());
-        mutableCapabilities.setCapability("browserstack.key", userBsConfig.getBsKey());
+        mutableCapabilities.setCapability("browserstack.user", bsConfig.getBsUser());
+        mutableCapabilities.setCapability("browserstack.key", bsConfig.getBsKey());
 
         mutableCapabilities.setCapability("app", bsConfig.getAppUrl());
 
