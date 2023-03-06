@@ -1,9 +1,10 @@
 package pages.components;
 
-import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static io.appium.java_client.AppiumBy.accessibilityId;
+import static io.appium.java_client.AppiumBy.id;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 public class ArticleActionTabComponent {
@@ -14,12 +15,19 @@ public class ArticleActionTabComponent {
             themeTab = $(accessibilityId("Theme")),
             contentsTab = $(accessibilityId("Contents"));
 
-    public void checkActionTabsVisibility() {
+    public ElementsCollection getTabs() {
 
-        saveTab.shouldBe(visible);
-        langTab.shouldBe(visible);
-        findTab.shouldBe(visible);
-        themeTab.shouldBe(visible);
-        contentsTab.shouldBe(visible);
+        return $(id("org.wikipedia:id/page_actions_tab_layout"))
+                .$$x("android.widget.TextView");
+    }
+
+    public boolean areAllTabsVisible() {
+
+        ElementsCollection tabs = getTabs();
+
+        for (SelenideElement tab : tabs) {
+            if (!tab.isDisplayed()) return false;
+        }
+        return true;
     }
 }

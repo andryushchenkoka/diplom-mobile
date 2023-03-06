@@ -39,10 +39,4 @@ public class SearchTests extends BaseTest {
             Assertions.assertTrue(searchPage.isRequestInAllResults(request, searchedHeaders));
         });
     }
-
-    @Test
-    public void checkSearchInBottomMenu(){
-
-
-    }
 }
