@@ -7,6 +7,12 @@ import org.aeonbits.owner.Config;
 })
 public interface BrowserstackConfig extends Config {
 
+    @Key("bs_user")
+    String getBsUser();
+
+    @Key("bs_key")
+    String getBsKey();
+
     @Key("appURL")
     String getAppUrl();
 
