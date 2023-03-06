@@ -2,7 +2,8 @@ package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
 
-import config.BrowserstackConfig;
+import config.DeviceBsConfig;
+import config.UserBsConfig;
 import lombok.SneakyThrows;
 
 import org.aeonbits.owner.ConfigFactory;
@@ -22,13 +23,14 @@ public class BrowserstackDriver implements WebDriverProvider {
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
 
-        BrowserstackConfig bsConfig = ConfigFactory.create(BrowserstackConfig.class);
+        UserBsConfig userBsConfig = ConfigFactory.create(UserBsConfig.class);
+        DeviceBsConfig bsConfig = ConfigFactory.create(DeviceBsConfig.class);
 
         MutableCapabilities mutableCapabilities = new MutableCapabilities();
         mutableCapabilities.merge(capabilities);
 
-        mutableCapabilities.setCapability("browserstack.user", bsConfig.getBsUser());
-        mutableCapabilities.setCapability("browserstack.key", bsConfig.getBsKey());
+        mutableCapabilities.setCapability("browserstack.user", userBsConfig.getBsUser());
+        mutableCapabilities.setCapability("browserstack.key", userBsConfig.getBsKey());
 
         mutableCapabilities.setCapability("app", bsConfig.getAppUrl());
 
@@ -40,7 +42,7 @@ public class BrowserstackDriver implements WebDriverProvider {
         mutableCapabilities.setCapability("name", bsConfig.getName());
 
         try {
-            return new RemoteWebDriver(new URL("http://hub.browserstack.com/wd/hub"), mutableCapabilities);
+            return new RemoteWebDriver(new URL(bsConfig.getBaseUrl()), mutableCapabilities);
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }

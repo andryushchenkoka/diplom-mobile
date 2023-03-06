@@ -3,15 +3,10 @@ package config;
 import org.aeonbits.owner.Config;
 
 @org.aeonbits.owner.Config.Sources({
-        "classpath:config/browserstack.properties"
+        "classpath:config/device_bs.properties"
 })
-public interface BrowserstackConfig extends Config {
+public interface DeviceBsConfig extends Config {
 
-    @Key("bs_user")
-    String getBsUser();
-
-    @Key("bs_key")
-    String getBsKey();
 
     @Key("appURL")
     String getAppUrl();
