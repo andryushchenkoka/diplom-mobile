@@ -8,17 +8,17 @@ import com.codeborne.selenide.SelenideElement;
 
 import java.util.List;
 
+import pages.components.SearchLineComponent;
+
 public class SearchPage {
 
-    private final SelenideElement searchLine = $(id("org.wikipedia:id/search_src_text")),
-            searchLanguages = $(id("org.wikipedia:id/horizontal_scroll_languages")),
+    private final SelenideElement searchLanguages = $(id("org.wikipedia:id/horizontal_scroll_languages")),
             searchResultsPanel = $(id("org.wikipedia:id/search_results_list"));
+    SearchLineComponent searchLine = new SearchLineComponent();
 
     public SearchPage setSearchRequest(String request) {
 
-        searchLine.click();
-        searchLine.sendKeys(request);
-        return this;
+        return searchLine.setSearchRequest(request);
     }
 
     public SearchPage setSearchLanguage(String lang) {

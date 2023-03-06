@@ -1,17 +1,13 @@
 package pages;
 
-import static com.codeborne.selenide.Selenide.$;
-import static io.appium.java_client.AppiumBy.accessibilityId;
-
-import com.codeborne.selenide.SelenideElement;
+import pages.components.SearchLineComponent;
 
 public class ExplorePage {
 
-    private final SelenideElement searchLine = $(accessibilityId("org.wikipedia:id/search_container"));
+    SearchLineComponent searchLine = new SearchLineComponent();
 
     public SearchPage tapSearchLine() {
 
-        searchLine.click();
-        return new SearchPage();
+        return searchLine.tapSearchLine();
     }
 }
