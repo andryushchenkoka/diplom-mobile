@@ -2,10 +2,8 @@ package pages.components;
 
 import static com.codeborne.selenide.Selenide.$;
 
-import static io.appium.java_client.AppiumBy.accessibilityId;
 import static io.appium.java_client.AppiumBy.id;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
@@ -13,18 +11,17 @@ import pages.SearchPage;
 
 public class MainNavTabComponent {
 
-    private final SelenideElement searchTab = $(accessibilityId("Search"));
+    private final SelenideElement searchTab = $(id("org.wikipedia:id/nav_tab_search"));
 
-    public ElementsCollection getTabs() {
+    public ElementsCollection getMainTabs() {
 
-        return $(id("org.wikipedia:id/main_nav_tab_container"))
-                .$$x("android.widget.FrameLayout")
-                .filterBy(Condition.attribute("content-desc"));
+        return $(id("org.wikipedia:id/main_nav_tab_layout"))
+                .$$("android.widget.FrameLayout");
     }
 
     public boolean areAllTabsVisible() {
 
-        ElementsCollection tabs = getTabs();
+        ElementsCollection tabs = getMainTabs();
 
         for (SelenideElement tab : tabs) {
             if (!tab.isDisplayed()) return false;

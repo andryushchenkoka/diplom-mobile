@@ -1,21 +1,23 @@
 package pages;
 
+import static com.codeborne.selenide.Selenide.$;
+import static io.appium.java_client.AppiumBy.id;
+
 import pages.components.MainNavTabComponent;
-import pages.components.SearchLineComponent;
 
 public class ExplorePage {
 
-    SearchLineComponent searchLine = new SearchLineComponent();
     MainNavTabComponent mainNavTab = new MainNavTabComponent();
-
-    public SearchPage tapSearchLine() {
-
-        return searchLine.tapSearchLine();
-    }
 
     public boolean areAllTabsVisible() {
 
         return mainNavTab.areAllTabsVisible();
+    }
+
+    public SearchPage tapSearchLine() {
+
+        $(id("org.wikipedia:id/search_container")).click();
+        return new SearchPage();
     }
 
     public SearchPage tapSearchTab() {

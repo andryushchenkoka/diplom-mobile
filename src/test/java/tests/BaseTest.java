@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 
 import drivers.BrowserstackDriver;
+import drivers.MobileDriver;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 
@@ -15,9 +16,14 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class BaseTest {
 
+    public static String environment = System.getProperty("env", "local");
+
     @BeforeAll
     static void beforeAll() {
-        Configuration.browser = BrowserstackDriver.class.getName();
+
+        if(environment.equals("browserstack")) Configuration.browser = BrowserstackDriver.class.getName();
+        if(environment.equals("local")) Configuration.browser = MobileDriver.class.getName();
+
         Configuration.timeout = 15000;
         Configuration.pageLoadTimeout = 15000;
         Configuration.browserSize = null;
@@ -26,8 +32,8 @@ public class BaseTest {
     @BeforeEach
     void addListener() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        open();
-        back();
+        open(); // запустить приложение
+        back(); // закрыть экран приветствия
     }
 
     @AfterEach
@@ -36,6 +42,6 @@ public class BaseTest {
         String sessionId = sessionId().toString();
         Attach.pageSource();
         closeWebDriver();
-        Attach.addVideo(sessionId);
+        if(environment.equals("browserstack")) Attach.addVideo(sessionId);
     }
 }

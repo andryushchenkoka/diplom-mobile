@@ -8,15 +8,15 @@ import com.codeborne.selenide.SelenideElement;
 
 public class ArticleActionTabComponent {
 
-    public ElementsCollection getTabs() {
+    public ElementsCollection getActionTabs() {
 
         return $(id("org.wikipedia:id/page_actions_tab_layout"))
-                .$$x("android.widget.TextView");
+                .$$("android.widget.TextView");
     }
 
     public boolean areAllTabsVisible() {
 
-        ElementsCollection tabs = getTabs();
+        ElementsCollection tabs = getActionTabs();
 
         for (SelenideElement tab : tabs) {
             if (!tab.isDisplayed()) return false;
