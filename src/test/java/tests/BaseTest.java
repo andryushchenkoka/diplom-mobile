@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 import static com.codeborne.selenide.Selenide.*;
+import static helpers.Attach.getSessionId;
 
 public class BaseTest {
 
@@ -21,8 +22,8 @@ public class BaseTest {
     @BeforeAll
     static void beforeAll() {
 
-        if(environment.equals("browserstack")) Configuration.browser = BrowserstackDriver.class.getName();
-        if(environment.equals("local")) Configuration.browser = MobileDriver.class.getName();
+        if (environment.equals("browserstack")) Configuration.browser = BrowserstackDriver.class.getName();
+        if (environment.equals("local")) Configuration.browser = MobileDriver.class.getName();
 
         Configuration.timeout = 15000;
         Configuration.pageLoadTimeout = 15000;
@@ -39,9 +40,10 @@ public class BaseTest {
     @AfterEach
     void addAttachments() {
 
-        String sessionId = sessionId().toString();
+        String sessionId = getSessionId();
+        Attach.screenshotAs("screenshot");
         Attach.pageSource();
         closeWebDriver();
-        if(environment.equals("browserstack")) Attach.addVideo(sessionId);
+        if (environment.equals("browserstack")) Attach.addVideo(sessionId);
     }
 }
