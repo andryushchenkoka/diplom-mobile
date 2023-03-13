@@ -41,7 +41,7 @@ public class BaseTest {
     void addAttachments() {
 
         String sessionId = getSessionId();
-        Attach.screenshotAs("screenshot");
+        //Attach.screenshotAs("screenshot");
         Attach.pageSource();
         closeWebDriver();
         if (environment.equals("browserstack")) Attach.addVideo(sessionId);
