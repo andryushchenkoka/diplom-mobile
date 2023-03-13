@@ -37,13 +37,13 @@ public class BaseTest {
         back(); // закрыть экран приветствия
     }
 
-    @AfterEach
-    void addAttachments() {
-
-        String sessionId = getSessionId();
-        //Attach.screenshotAs("screenshot");
-        Attach.pageSource();
-        closeWebDriver();
-        if (environment.equals("browserstack")) Attach.addVideo(sessionId);
-    }
+//    @AfterEach
+//    void addAttachments() {
+//
+//        String sessionId = getSessionId();
+//        //Attach.screenshotAs("screenshot");
+//        Attach.pageSource();
+//        closeWebDriver();
+//        if (environment.equals("browserstack")) Attach.addVideo(sessionId);
+//    }
 }
