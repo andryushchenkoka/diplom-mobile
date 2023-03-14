@@ -1,4 +1,4 @@
-# Дипломный проект по тестированию мобильного приложения [Wikipedia](https://reqres.in/)
+# Дипломный проект по тестированию мобильного приложения [Wikipedia](https://play.google.com/store/apps/details/Wikipedia?id=org.wikipedia&hl=ru)
 
 ## :open_book: Содержание:
 
