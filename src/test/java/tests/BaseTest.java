@@ -23,7 +23,8 @@ public class BaseTest {
     static void beforeAll() {
 
         if (environment.equals("browserstack")) Configuration.browser = BrowserstackDriver.class.getName();
-        if (environment.equals("local")) Configuration.browser = MobileDriver.class.getName();
+        else if (environment.equals("local")) Configuration.browser = MobileDriver.class.getName();
+        else throw new IllegalArgumentException("Недействительный параметр environment");
 
         Configuration.timeout = 15000;
         Configuration.pageLoadTimeout = 15000;
