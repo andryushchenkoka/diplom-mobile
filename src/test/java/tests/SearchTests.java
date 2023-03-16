@@ -1,5 +1,6 @@
 package tests;
 
+import com.codeborne.selenide.CollectionCondition;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
@@ -52,8 +53,8 @@ public class SearchTests extends BaseTest {
             step("Все результаты поиска содержат введенный запрос", () -> {
 
                 List<String> heads = $$(id("org.wikipedia:id/page_list_item_title"))
+                        .shouldHave(CollectionCondition.sizeGreaterThan(0))
                         .texts().stream().map(String::toLowerCase).collect(Collectors.toList());
-                Assertions.assertTrue(heads.size() > 0);
                 Assertions.assertTrue(heads.contains(request.toLowerCase()));
             });
         });
